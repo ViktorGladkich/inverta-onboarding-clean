@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Baserow configuration via environment variables
-// Set these in Vercel Dashboard → Settings → Environment Variables
-const BASEROW_TOKEN = process.env.BASEROW_TOKEN;
-const BASEROW_TABLE_ID = process.env.BASEROW_TABLE_ID;
-
 // Helper: convert array to comma-separated string for Baserow
 function arrayToString(value: unknown): string {
   if (Array.isArray(value)) return value.join(', ');
@@ -12,6 +7,11 @@ function arrayToString(value: unknown): string {
 }
 
 export async function POST(req: NextRequest) {
+  // Baserow configuration via environment variables
+  // Set these in Vercel Dashboard → Settings → Environment Variables
+  const BASEROW_TOKEN = process.env.BASEROW_TOKEN;
+  const BASEROW_TABLE_ID = process.env.BASEROW_TABLE_ID;
+
   try {
     const data = await req.json();
 
