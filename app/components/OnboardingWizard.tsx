@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, ArrowRight, Check, AlertCircle } from 'lucide-react';
+import Image from 'next/image';
 import { Logo } from './Logo';
 import {
   Input,
@@ -283,7 +284,72 @@ export function OnboardingWizard() {
   const progressPercent = ((step + 1) / TOTAL_STEPS) * 100;
 
   return (
-    <main className="min-h-dvh flex flex-col">
+    <div className="min-h-dvh flex flex-col lg:flex-row bg-[var(--color-bg-black)] relative overflow-x-hidden">
+      
+      {/* AMBIENT BACKGROUND GEOMETRIC IMAGES (Extremely low opacity to ensure 100% readability of form fields) */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-[0.035] lg:opacity-[0.015]">
+        <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-bg-black)] via-transparent to-[var(--color-bg-black)] z-10" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 h-full w-full">
+          {[1, 2, 3, 4, 5, 6, 7, 1].map((num, i) => (
+            <div key={i} className="relative w-full h-full min-h-[25vh] overflow-hidden rounded-md border border-white/5">
+              <Image
+                src={`/pixolite${num}.png`}
+                alt=""
+                fill
+                sizes="25vw"
+                className="object-cover filter grayscale blur-[1px]"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* LEFT PORTFOLIO SIDEBAR (Sticky on Desktop) */}
+      <aside className="hidden lg:flex lg:w-[380px] xl:w-[450px] shrink-0 border-r border-[var(--color-border-subtle)] bg-[#050505] p-8 flex-col justify-between max-h-screen sticky top-0 overflow-y-auto z-30 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex flex-col gap-8">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-bg-lime)] mb-1">
+              — BRAND INSPIRATIONS
+            </p>
+            <h2 className="font-display font-black text-3xl tracking-tight leading-none text-white">
+              INVERTA SHOWCASE
+            </h2>
+            <p className="text-xs text-[var(--color-text-gray)] mt-2 font-mono">
+              Inspirationen für Ihr maßgeschneidertes Design-System.
+            </p>
+          </div>
+
+          {/* Scrolling Gallery of Images */}
+          <div className="flex flex-col gap-6">
+            {[1, 2, 3, 4, 5, 6, 7].map((num) => (
+              <div key={num} className="group relative overflow-hidden border border-[var(--color-border-subtle)] hover:border-[var(--color-bg-lime)] transition-all duration-300 rounded-sm">
+                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Image
+                    src={`/pixolite${num}.png`}
+                    alt={`Inspiration ${num}`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 450px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors duration-300" />
+                </div>
+                <div className="flex justify-between items-center p-3 bg-[var(--color-bg-pure)] border-t border-[var(--color-border-subtle)] font-mono text-[10px] tracking-wider text-[var(--color-text-gray)] group-hover:text-[var(--color-bg-lime)] transition-colors">
+                  <span>PIXOLITE CASE #{String(num).padStart(2, '0')}</span>
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">VIEW</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-[var(--color-border-subtle)] font-mono text-[9px] text-[var(--color-text-dim)] flex justify-between">
+          <span>© 2026 INVERTA</span>
+          <span>DRESDEN · GERMANY</span>
+        </div>
+      </aside>
+
+      {/* RIGHT CONTENT CONTAINER */}
+      <main className="flex-1 flex flex-col min-h-dvh relative z-10">
       {/* HEADER */}
       <header className="sticky top-0 z-50 bg-[var(--color-bg-black)]/95 backdrop-blur-md border-b border-[var(--color-border-subtle)]">
         <div className="max-w-2xl mx-auto px-5 sm:px-8 py-0 flex items-center justify-between">
@@ -423,6 +489,7 @@ export function OnboardingWizard() {
         </div>
       </footer>
     </main>
+    </div>
   );
 }
 
@@ -881,6 +948,27 @@ function Step6Design({
         priority="WICHTIG"
         description="Visuelle Identität für Ihre Website."
       />
+
+      <FieldGroupLabel>Design-Inspirationen (Pixolite Showcase)</FieldGroupLabel>
+      <div className="flex gap-4 overflow-x-auto pb-4 pt-1 -mx-5 px-5 sm:-mx-8 sm:px-8 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        {[1, 2, 3, 4, 5, 6, 7].map((num) => (
+          <div key={num} className="snap-center shrink-0 w-[280px] sm:w-[320px] bg-[var(--color-bg-card)] border border-[var(--color-border-subtle)] rounded-sm overflow-hidden flex flex-col">
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src={`/pixolite${num}.png`}
+                alt={`Showcase ${num}`}
+                fill
+                sizes="(max-width: 640px) 280px, 320px"
+                className="object-cover"
+              />
+            </div>
+            <div className="p-3 bg-[var(--color-bg-pure)] border-t border-[var(--color-border-subtle)] flex justify-between items-center">
+              <span className="font-mono text-[9px] tracking-wider text-[var(--color-text-gray)]">CASE #{String(num).padStart(2, '0')}</span>
+              <span className="font-serif italic text-xs text-[var(--color-bg-lime)]">Inspiration</span>
+            </div>
+          </div>
+        ))}
+      </div>
 
       <FieldGroupLabel>Markenfarben (HEX-Codes)</FieldGroupLabel>
 
