@@ -228,7 +228,7 @@ export function OnboardingWizard() {
     return (
       <main className="relative min-h-dvh flex flex-col items-center justify-center px-6 py-12 overflow-hidden">
         {/* Background Images with smooth cross-fade */}
-        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none bg-[var(--color-bg-black)]">
+        <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[var(--color-bg-black)]">
           <motion.div
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 0.15, scale: 1 }}
@@ -239,52 +239,54 @@ export function OnboardingWizard() {
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-black)]/40 via-[var(--color-bg-black)]/20 to-[var(--color-bg-black)]/60" />
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-md w-full text-center"
-        >
+        <div className="relative z-10 max-w-md w-full text-center">
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3, type: 'spring' }}
-            className="w-20 h-20 mx-auto mb-8 rounded-full bg-[var(--color-bg-lime)] flex items-center justify-center glow-lime"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="w-full"
           >
-            <Check
-              className="w-10 h-10 text-[var(--color-text-black)]"
-              strokeWidth={3}
-            />
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.3, type: 'spring' }}
+              className="w-20 h-20 mx-auto mb-8 rounded-full bg-[var(--color-bg-lime)] flex items-center justify-center glow-lime"
+            >
+              <Check
+                className="w-10 h-10 text-[var(--color-text-black)]"
+                strokeWidth={3}
+              />
+            </motion.div>
+
+            <p className="font-mono text-xs uppercase tracking-wider text-[var(--color-bg-lime)] mb-3">
+              — VIELEN DANK
+            </p>
+
+            <h1 className="font-display font-bold text-5xl leading-tight mb-2">
+              BRIEF
+            </h1>
+            <h1 className="font-serif italic text-5xl text-[var(--color-bg-lime)] font-normal mb-6">
+              empfangen.
+            </h1>
+
+            <p className="text-[var(--color-text-gray)] mb-8 leading-relaxed">
+              Wir haben Ihre Angaben erhalten und melden uns innerhalb von 24
+              Stunden mit den nächsten Schritten — inkl. Termin für ein Kickoff-Gespräch.
+            </p>
+
+            <div className="border-t border-[var(--color-border-subtle)] pt-6 text-left">
+              <p className="font-mono text-xs uppercase tracking-wider text-[var(--color-text-gray)] mb-3">
+                — INVERTA DIGITAL
+              </p>
+              <p className="text-sm text-[var(--color-text-white)] font-bold">
+                info@invertadigital.de
+              </p>
+              <p className="text-sm text-[var(--color-text-gray)]">
+                +49 176 70428834
+              </p>
+            </div>
           </motion.div>
-
-          <p className="font-mono text-xs uppercase tracking-wider text-[var(--color-bg-lime)] mb-3">
-            — VIELEN DANK
-          </p>
-
-          <h1 className="font-display font-bold text-5xl leading-tight mb-2">
-            BRIEF
-          </h1>
-          <h1 className="font-serif italic text-5xl text-[var(--color-bg-lime)] font-normal mb-6">
-            empfangen.
-          </h1>
-
-          <p className="text-[var(--color-text-gray)] mb-8 leading-relaxed">
-            Wir haben Ihre Angaben erhalten und melden uns innerhalb von 24
-            Stunden mit den nächsten Schritten — inkl. Termin für ein Kickoff-Gespräch.
-          </p>
-
-          <div className="border-t border-[var(--color-border-subtle)] pt-6 text-left">
-            <p className="font-mono text-xs uppercase tracking-wider text-[var(--color-text-gray)] mb-3">
-              — INVERTA DIGITAL
-            </p>
-            <p className="text-sm text-[var(--color-text-white)] font-bold">
-              info@invertadigital.de
-            </p>
-            <p className="text-sm text-[var(--color-text-gray)]">
-              +49 176 70428834
-            </p>
-          </div>
-        </motion.div>
+        </div>
       </main>
     );
   }
@@ -306,9 +308,9 @@ export function OnboardingWizard() {
   const bgImage = bgImages[step] || '/pixolite1.png';
 
   return (
-    <main className="relative min-h-dvh flex flex-col">
+    <main className="relative min-h-dvh flex flex-col overflow-hidden">
       {/* Background Images with smooth cross-fade */}
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none bg-[var(--color-bg-black)]">
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[var(--color-bg-black)]">
         <AnimatePresence mode="popLayout">
           <motion.div
             key={bgImage}
@@ -322,144 +324,147 @@ export function OnboardingWizard() {
         </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-black)]/50 via-[var(--color-bg-black)]/10 to-[var(--color-bg-black)]/60" />
       </div>
-      {/* HEADER */}
-      <header className="sticky top-0 z-50 bg-[var(--color-bg-black)]/95 backdrop-blur-md border-b border-[var(--color-border-subtle)]">
-        <div className="max-w-2xl mx-auto px-5 sm:px-8 py-0 flex items-center justify-between">
-          <Logo className="h-7 w-auto text-white" />
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-text-gray)]">
-              {String(step + 1).padStart(2, '0')} / {String(TOTAL_STEPS).padStart(2, '0')}
-            </span>
+
+      <div className="relative z-10 flex-1 flex flex-col">
+        {/* HEADER */}
+        <header className="sticky top-0 z-50 bg-[var(--color-bg-black)]/95 backdrop-blur-md border-b border-[var(--color-border-subtle)]">
+          <div className="max-w-2xl mx-auto px-5 sm:px-8 py-0 flex items-center justify-between">
+            <Logo className="h-7 w-auto text-white" />
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-text-gray)]">
+                {String(step + 1).padStart(2, '0')} / {String(TOTAL_STEPS).padStart(2, '0')}
+              </span>
+            </div>
+          </div>
+          {/* Progress bar */}
+          <div className="h-[2px] bg-[var(--color-border-subtle)]">
+            <motion.div
+              className="progress-bar h-full"
+              initial={{ width: 0 }}
+              animate={{ width: `${progressPercent}%` }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+            />
+          </div>
+        </header>
+
+        {/* STEP INDICATOR */}
+        <div className="max-w-2xl w-full mx-auto px-5 sm:px-8 py-4">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
+            {STEP_TITLES.map((title, i) => (
+              <button
+                key={i}
+                onClick={() => setStep(i)}
+                className={`
+                  flex-shrink-0 font-mono text-[10px] uppercase tracking-wider px-2 py-1 rounded-sm transition-all
+                  ${
+                    i === step
+                      ? 'bg-[var(--color-bg-lime)] text-[var(--color-text-black)] font-bold'
+                      : i < step
+                      ? 'text-[var(--color-bg-lime)]'
+                      : 'text-[var(--color-text-dim)]'
+                  }
+                `}
+              >
+                {String(i + 1).padStart(2, '0')} {title}
+              </button>
+            ))}
           </div>
         </div>
-        {/* Progress bar */}
-        <div className="h-[2px] bg-[var(--color-border-subtle)]">
-          <motion.div
-            className="progress-bar h-full"
-            initial={{ width: 0 }}
-            animate={{ width: `${progressPercent}%` }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          />
-        </div>
-      </header>
 
-      {/* STEP INDICATOR */}
-      <div className="max-w-2xl w-full mx-auto px-5 sm:px-8 py-4">
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
-          {STEP_TITLES.map((title, i) => (
-            <button
-              key={i}
-              onClick={() => setStep(i)}
-              className={`
-                flex-shrink-0 font-mono text-[10px] uppercase tracking-wider px-2 py-1 rounded-sm transition-all
-                ${
-                  i === step
-                    ? 'bg-[var(--color-bg-lime)] text-[var(--color-text-black)] font-bold'
-                    : i < step
-                    ? 'text-[var(--color-bg-lime)]'
-                    : 'text-[var(--color-text-dim)]'
-                }
-              `}
+        {/* STEP CONTENT */}
+        <div className="flex-1 max-w-2xl w-full mx-auto px-5 sm:px-8 py-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={step}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
             >
-              {String(i + 1).padStart(2, '0')} {title}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* STEP CONTENT */}
-      <div className="flex-1 max-w-2xl w-full mx-auto px-5 sm:px-8 py-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={step}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-          >
-            {step === 0 && <Step1Firma data={data} update={update} />}
-            {step === 1 && <Step2Kontakt data={data} update={update} />}
-            {step === 2 && (
-              <Step3Sicherheit
-                data={data}
-                update={update}
-                toggleArray={toggleArray}
-              />
-            )}
-            {step === 3 && (
-              <Step4Reinigung
-                data={data}
-                update={update}
-                toggleArray={toggleArray}
-              />
-            )}
-            {step === 4 && (
-              <Step5Umzug data={data} toggleArray={toggleArray} update={update} />
-            )}
-            {step === 5 && (
-              <Step6Design
-                data={data}
-                update={update}
-                toggleArray={toggleArray}
-              />
-            )}
-            {step === 6 && (
-              <Step7Ziele data={data} update={update} toggleArray={toggleArray} />
-            )}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* ERROR MESSAGE */}
-        {error && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-6 flex items-start gap-3 p-4 bg-[var(--color-critical)]/10 border border-[var(--color-critical)]/40 rounded-sm"
-          >
-            <AlertCircle className="w-5 h-5 text-[var(--color-critical)] flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-[var(--color-text-white)]">{error}</p>
-          </motion.div>
-        )}
-      </div>
-
-      {/* NAVIGATION (sticky bottom on mobile) */}
-      <footer className="sticky bottom-0 z-40 bg-[var(--color-bg-black)]/95 backdrop-blur-md border-t border-[var(--color-border-subtle)]">
-        <div className="max-w-2xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between gap-3">
-          <button
-            onClick={back}
-            disabled={step === 0}
-            className="flex items-center gap-2 px-4 py-3 font-mono text-xs uppercase tracking-wider text-[var(--color-text-gray)] hover:text-[var(--color-bg-lime)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="hidden sm:inline">Zurück</span>
-          </button>
-
-          {step < TOTAL_STEPS - 1 ? (
-            <button
-              onClick={next}
-              className="flex items-center gap-2 px-6 py-3 bg-[var(--color-bg-lime)] text-[var(--color-text-black)] font-mono text-xs uppercase tracking-wider font-bold hover:bg-[var(--color-bg-lime-dark)] transition-colors"
-            >
-              Weiter
-              <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-            </button>
-          ) : (
-            <button
-              onClick={handleSubmit}
-              disabled={submitting}
-              className="flex items-center gap-2 px-6 py-3 bg-[var(--color-bg-lime)] text-[var(--color-text-black)] font-mono text-xs uppercase tracking-wider font-bold hover:bg-[var(--color-bg-lime-dark)] disabled:opacity-50 transition-colors"
-            >
-              {submitting ? (
-                'Sende...'
-              ) : (
-                <>
-                  Brief absenden
-                  <Check className="w-4 h-4" strokeWidth={2.5} />
-                </>
+              {step === 0 && <Step1Firma data={data} update={update} />}
+              {step === 1 && <Step2Kontakt data={data} update={update} />}
+              {step === 2 && (
+                <Step3Sicherheit
+                  data={data}
+                  update={update}
+                  toggleArray={toggleArray}
+                />
               )}
-            </button>
+              {step === 3 && (
+                <Step4Reinigung
+                  data={data}
+                  update={update}
+                  toggleArray={toggleArray}
+                />
+              )}
+              {step === 4 && (
+                <Step5Umzug data={data} toggleArray={toggleArray} update={update} />
+              )}
+              {step === 5 && (
+                <Step6Design
+                  data={data}
+                  update={update}
+                  toggleArray={toggleArray}
+                />
+              )}
+              {step === 6 && (
+                <Step7Ziele data={data} update={update} toggleArray={toggleArray} />
+              )}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* ERROR MESSAGE */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 flex items-start gap-3 p-4 bg-[var(--color-critical)]/10 border border-[var(--color-critical)]/40 rounded-sm"
+            >
+              <AlertCircle className="w-5 h-5 text-[var(--color-critical)] flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-[var(--color-text-white)]">{error}</p>
+            </motion.div>
           )}
         </div>
-      </footer>
+
+        {/* NAVIGATION (sticky bottom on mobile) */}
+        <footer className="sticky bottom-0 z-40 bg-[var(--color-bg-black)]/95 backdrop-blur-md border-t border-[var(--color-border-subtle)]">
+          <div className="max-w-2xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between gap-3">
+            <button
+              onClick={back}
+              disabled={step === 0}
+              className="flex items-center gap-2 px-4 py-3 font-mono text-xs uppercase tracking-wider text-[var(--color-text-gray)] hover:text-[var(--color-bg-lime)] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Zurück</span>
+            </button>
+
+            {step < TOTAL_STEPS - 1 ? (
+              <button
+                onClick={next}
+                className="flex items-center gap-2 px-6 py-3 bg-[var(--color-bg-lime)] text-[var(--color-text-black)] font-mono text-xs uppercase tracking-wider font-bold hover:bg-[var(--color-bg-lime-dark)] transition-colors"
+              >
+                Weiter
+                <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+              </button>
+            ) : (
+              <button
+                onClick={handleSubmit}
+                disabled={submitting}
+                className="flex items-center gap-2 px-6 py-3 bg-[var(--color-bg-lime)] text-[var(--color-text-black)] font-mono text-xs uppercase tracking-wider font-bold hover:bg-[var(--color-bg-lime-dark)] disabled:opacity-50 transition-colors"
+              >
+                {submitting ? (
+                  'Sende...'
+                ) : (
+                  <>
+                    Brief absenden
+                    <Check className="w-4 h-4" strokeWidth={2.5} />
+                  </>
+                )}
+              </button>
+            )}
+          </div>
+        </footer>
+      </div>
     </main>
   );
 }
