@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, ArrowRight, Check, AlertCircle } from 'lucide-react';
-import Image from 'next/image';
 import { Logo } from './Logo';
 import {
   Input,
@@ -151,15 +150,6 @@ export function OnboardingWizard() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [bgIndex, setBgIndex] = useState(0);
-
-  // Background Slideshow Cycling Interval (every 6 seconds)
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % 7);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
 
   // Load saved data on mount
   useEffect(() => {
@@ -236,7 +226,19 @@ export function OnboardingWizard() {
   // ============================================
   if (submitted) {
     return (
-      <main className="min-h-dvh flex flex-col items-center justify-center px-6 py-12">
+      <main className="relative min-h-dvh flex flex-col items-center justify-center px-6 py-12 overflow-hidden">
+        {/* Background Images with smooth cross-fade */}
+        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none bg-[var(--color-bg-black)]">
+          <motion.div
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 0.15, scale: 1 }}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(/pixolite10.png)` }}
+            transition={{ duration: 1.5, ease: 'easeInOut' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-black)]/40 via-[var(--color-bg-black)]/20 to-[var(--color-bg-black)]/60" />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -292,38 +294,34 @@ export function OnboardingWizard() {
   // ============================================
   const progressPercent = ((step + 1) / TOTAL_STEPS) * 100;
 
-  return (
-    <div className="min-h-dvh flex flex-col bg-[var(--color-bg-black)] relative overflow-x-hidden">
-      
-      {/* CINEMATIC FULLSCREEN BACKGROUND SLIDESHOW */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Heavy Vignette Overlay & Gradient to guarantee maximum contrast and 100% legibility of form fields */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/95 via-[#0A0A0A]/85 to-[#0A0A0A]/95 z-10" />
-        <div className="absolute inset-0 bg-black/55 z-10" />
-        
-        {[1, 2, 3, 4, 5, 6, 7].map((num, i) => (
-          <div
-            key={num}
-            className={`absolute inset-0 transition-all duration-[2000ms] ease-in-out ${
-              i === bgIndex
-                ? 'opacity-25 scale-100 translate-y-0'
-                : 'opacity-0 scale-105 -translate-y-2'
-            }`}
-          >
-            <Image
-              src={`/pixolite${num}.png`}
-              alt=""
-              fill
-              priority={i === 0}
-              sizes="100vw"
-              className="object-cover filter grayscale contrast-[1.05]"
-            />
-          </div>
-        ))}
-      </div>
+  const bgImages = [
+    '/pixolite1.png', // Step 0: Firma
+    '/pixolite2.png', // Step 1: Kontakt
+    '/pixolite3.png', // Step 2: Sicherheit
+    '/pixolite4.png', // Step 3: Reinigung
+    '/pixolite5.png', // Step 4: Umzug
+    '/pixolite6.png', // Step 5: Design
+    '/pixolite7.png', // Step 6: Ziele
+  ];
+  const bgImage = bgImages[step] || '/pixolite1.png';
 
-      {/* MAIN CONTAINER */}
-      <main className="flex-1 flex flex-col min-h-dvh relative z-10">
+  return (
+    <main className="relative min-h-dvh flex flex-col">
+      {/* Background Images with smooth cross-fade */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none bg-[var(--color-bg-black)]">
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            key={bgImage}
+            initial={{ opacity: 0, scale: 1.03 }}
+            animate={{ opacity: 0.12, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: 'easeInOut' }}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${bgImage})` }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-black)]/50 via-[var(--color-bg-black)]/10 to-[var(--color-bg-black)]/60" />
+      </div>
       {/* HEADER */}
       <header className="sticky top-0 z-50 bg-[var(--color-bg-black)]/95 backdrop-blur-md border-b border-[var(--color-border-subtle)]">
         <div className="max-w-2xl mx-auto px-5 sm:px-8 py-0 flex items-center justify-between">
@@ -463,7 +461,6 @@ export function OnboardingWizard() {
         </div>
       </footer>
     </main>
-    </div>
   );
 }
 
@@ -922,27 +919,6 @@ function Step6Design({
         priority="WICHTIG"
         description="Visuelle Identität für Ihre Website."
       />
-
-      <FieldGroupLabel>Design-Inspirationen (Pixolite Showcase)</FieldGroupLabel>
-      <div className="flex gap-4 overflow-x-auto pb-4 pt-1 -mx-5 px-5 sm:-mx-8 sm:px-8 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        {[1, 2, 3, 4, 5, 6, 7].map((num) => (
-          <div key={num} className="snap-center shrink-0 w-[280px] sm:w-[320px] bg-[var(--color-bg-card)] border border-[var(--color-border-subtle)] rounded-sm overflow-hidden flex flex-col">
-            <div className="relative aspect-[16/10] w-full">
-              <Image
-                src={`/pixolite${num}.png`}
-                alt={`Showcase ${num}`}
-                fill
-                sizes="(max-width: 640px) 280px, 320px"
-                className="object-cover"
-              />
-            </div>
-            <div className="p-3 bg-[var(--color-bg-pure)] border-t border-[var(--color-border-subtle)] flex justify-between items-center">
-              <span className="font-mono text-[9px] tracking-wider text-[var(--color-text-gray)]">CASE #{String(num).padStart(2, '0')}</span>
-              <span className="font-serif italic text-xs text-[var(--color-bg-lime)]">Inspiration</span>
-            </div>
-          </div>
-        ))}
-      </div>
 
       <FieldGroupLabel>Markenfarben (HEX-Codes)</FieldGroupLabel>
 
