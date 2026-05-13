@@ -5,10 +5,10 @@ export function Logo({ className = "" }: { className?: string }) {
     <Image
       src="/logo-inverta-white.png"
       alt="INVERTA"
-      width={140}
-      height={42}
+      width={200}
+      height={60}
       priority
-      className={`h-7 w-auto object-contain ${className}`}
+      className={`h-25 w-auto object-contain ${className}`}
     />
   );
 }

@@ -286,7 +286,7 @@ export function OnboardingWizard() {
     <main className="min-h-dvh flex flex-col">
       {/* HEADER */}
       <header className="sticky top-0 z-50 bg-[var(--color-bg-black)]/95 backdrop-blur-md border-b border-[var(--color-border-subtle)]">
-        <div className="max-w-2xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+        <div className="max-w-2xl mx-auto px-5 sm:px-8 py-0 flex items-center justify-between">
           <Logo className="h-7 w-auto text-white" />
           <div className="flex items-center gap-2">
             <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-text-gray)]">
