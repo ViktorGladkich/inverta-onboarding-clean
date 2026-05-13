@@ -11,6 +11,7 @@ export async function POST(req: NextRequest) {
   // Set these in Vercel Dashboard → Settings → Environment Variables
   const BASEROW_TOKEN = process.env.BASEROW_TOKEN;
   const BASEROW_TABLE_ID = process.env.BASEROW_TABLE_ID;
+  const BASEROW_URL = process.env.BASEROW_URL || 'https://api.baserow.io';
 
   try {
     const data = await req.json();
@@ -100,7 +101,8 @@ export async function POST(req: NextRequest) {
     // SEND TO BASEROW (if configured)
     // ============================================
     if (BASEROW_TOKEN && BASEROW_TABLE_ID) {
-      const url = `https://api.baserow.io/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`;
+      const baseUrl = BASEROW_URL.endsWith('/') ? BASEROW_URL.slice(0, -1) : BASEROW_URL;
+      const url = `${baseUrl}/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`;
 
       const baserowRes = await fetch(url, {
         method: 'POST',
