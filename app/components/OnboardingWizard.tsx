@@ -151,6 +151,15 @@ export function OnboardingWizard() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [bgIndex, setBgIndex] = useState(0);
+
+  // Background Slideshow Cycling Interval (every 6 seconds)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % 7);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   // Load saved data on mount
   useEffect(() => {
@@ -284,71 +293,36 @@ export function OnboardingWizard() {
   const progressPercent = ((step + 1) / TOTAL_STEPS) * 100;
 
   return (
-    <div className="min-h-dvh flex flex-col lg:flex-row bg-[var(--color-bg-black)] relative overflow-x-hidden">
+    <div className="min-h-dvh flex flex-col bg-[var(--color-bg-black)] relative overflow-x-hidden">
       
-      {/* AMBIENT BACKGROUND GEOMETRIC IMAGES (Extremely low opacity to ensure 100% readability of form fields) */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-[0.035] lg:opacity-[0.015]">
-        <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-bg-black)] via-transparent to-[var(--color-bg-black)] z-10" />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 h-full w-full">
-          {[1, 2, 3, 4, 5, 6, 7, 1].map((num, i) => (
-            <div key={i} className="relative w-full h-full min-h-[25vh] overflow-hidden rounded-md border border-white/5">
-              <Image
-                src={`/pixolite${num}.png`}
-                alt=""
-                fill
-                sizes="25vw"
-                className="object-cover filter grayscale blur-[1px]"
-              />
-            </div>
-          ))}
-        </div>
+      {/* CINEMATIC FULLSCREEN BACKGROUND SLIDESHOW */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Heavy Vignette Overlay & Gradient to guarantee maximum contrast and 100% legibility of form fields */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/95 via-[#0A0A0A]/85 to-[#0A0A0A]/95 z-10" />
+        <div className="absolute inset-0 bg-black/55 z-10" />
+        
+        {[1, 2, 3, 4, 5, 6, 7].map((num, i) => (
+          <div
+            key={num}
+            className={`absolute inset-0 transition-all duration-[2000ms] ease-in-out ${
+              i === bgIndex
+                ? 'opacity-25 scale-100 translate-y-0'
+                : 'opacity-0 scale-105 -translate-y-2'
+            }`}
+          >
+            <Image
+              src={`/pixolite${num}.png`}
+              alt=""
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              className="object-cover filter grayscale contrast-[1.05]"
+            />
+          </div>
+        ))}
       </div>
 
-      {/* LEFT PORTFOLIO SIDEBAR (Sticky on Desktop) */}
-      <aside className="hidden lg:flex lg:w-[380px] xl:w-[450px] shrink-0 border-r border-[var(--color-border-subtle)] bg-[#050505] p-8 flex-col justify-between max-h-screen sticky top-0 overflow-y-auto z-30 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        <div className="flex flex-col gap-8">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-wider text-[var(--color-bg-lime)] mb-1">
-              — BRAND INSPIRATIONS
-            </p>
-            <h2 className="font-display font-black text-3xl tracking-tight leading-none text-white">
-              INVERTA SHOWCASE
-            </h2>
-            <p className="text-xs text-[var(--color-text-gray)] mt-2 font-mono">
-              Inspirationen für Ihr maßgeschneidertes Design-System.
-            </p>
-          </div>
-
-          {/* Scrolling Gallery of Images */}
-          <div className="flex flex-col gap-6">
-            {[1, 2, 3, 4, 5, 6, 7].map((num) => (
-              <div key={num} className="group relative overflow-hidden border border-[var(--color-border-subtle)] hover:border-[var(--color-bg-lime)] transition-all duration-300 rounded-sm">
-                <div className="relative aspect-[16/10] w-full overflow-hidden">
-                  <Image
-                    src={`/pixolite${num}.png`}
-                    alt={`Inspiration ${num}`}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 450px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors duration-300" />
-                </div>
-                <div className="flex justify-between items-center p-3 bg-[var(--color-bg-pure)] border-t border-[var(--color-border-subtle)] font-mono text-[10px] tracking-wider text-[var(--color-text-gray)] group-hover:text-[var(--color-bg-lime)] transition-colors">
-                  <span>PIXOLITE CASE #{String(num).padStart(2, '0')}</span>
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">VIEW</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-8 pt-6 border-t border-[var(--color-border-subtle)] font-mono text-[9px] text-[var(--color-text-dim)] flex justify-between">
-          <span>© 2026 INVERTA</span>
-          <span>DRESDEN · GERMANY</span>
-        </div>
-      </aside>
-
-      {/* RIGHT CONTENT CONTAINER */}
+      {/* MAIN CONTAINER */}
       <main className="flex-1 flex flex-col min-h-dvh relative z-10">
       {/* HEADER */}
       <header className="sticky top-0 z-50 bg-[var(--color-bg-black)]/95 backdrop-blur-md border-b border-[var(--color-border-subtle)]">
