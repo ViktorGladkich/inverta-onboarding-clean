@@ -300,7 +300,7 @@ export function OnboardingWizard() {
     '/pixolite1.png', // Step 0: Firma
     '/pixolite2.png', // Step 1: Kontakt
     '/pixolite3.png', // Step 2: Sicherheit
-    '/pixolite4.png', // Step 3: Reinigung
+    '/pixolite8.png', // Step 3: Reinigung
     '/pixolite5.png', // Step 4: Umzug
     '/pixolite6.png', // Step 5: Design
     '/pixolite7.png', // Step 6: Ziele
