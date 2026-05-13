@@ -232,7 +232,7 @@ export function OnboardingWizard() {
           <motion.div
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 0.15, scale: 1 }}
-            className="absolute inset-0 bg-no-repeat bg-center bg-[size:90%] sm:bg-[size:65%]"
+            className="absolute inset-0 bg-no-repeat bg-center bg-[size:90%] sm:bg-[size:40%]"
             style={{ backgroundImage: `url(/pixolite10.png)` }}
             transition={{ duration: 1.5, ease: 'easeInOut' }}
           />
@@ -318,11 +318,11 @@ export function OnboardingWizard() {
             animate={{ opacity: 0.12, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: 'easeInOut' }}
-            className="absolute inset-0 bg-no-repeat bg-center bg-[size:90%] sm:bg-[size:65%]"
+            className="absolute inset-0 bg-no-repeat bg-center bg-[size:90%] sm:bg-[size:40%]"
             style={{ backgroundImage: `url(${bgImage})` }}
           />
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-black)]/50 via-[var(--color-bg-black)]/10 to-[var(--color-bg-black)]/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-black)]/80 via-[var(--color-bg-black)]/10 to-[var(--color-bg-black)]/60" />
       </div>
 
       <div className="relative z-10 flex-1 flex flex-col">
