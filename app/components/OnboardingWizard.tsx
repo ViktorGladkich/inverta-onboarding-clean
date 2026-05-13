@@ -232,7 +232,7 @@ export function OnboardingWizard() {
           <motion.div
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 0.15, scale: 1 }}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-no-repeat bg-center bg-[size:90%] sm:bg-[size:65%]"
             style={{ backgroundImage: `url(/pixolite10.png)` }}
             transition={{ duration: 1.5, ease: 'easeInOut' }}
           />
@@ -318,7 +318,7 @@ export function OnboardingWizard() {
             animate={{ opacity: 0.12, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: 'easeInOut' }}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-no-repeat bg-center bg-[size:90%] sm:bg-[size:65%]"
             style={{ backgroundImage: `url(${bgImage})` }}
           />
         </AnimatePresence>
