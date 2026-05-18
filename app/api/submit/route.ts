@@ -36,65 +36,86 @@ export async function POST(req: NextRequest) {
       'Eingegangen am': new Date().toISOString(),
       'Status': 'Neu',
 
-      // Step 1: Firma
+      // Step 1: Firma & Rechtsform
       'Firmenname': data.firmenname,
       'Rechtsform': data.rechtsform || '',
-      'Adresse': data.adresse || '',
+      'Rechtsform Sonstiges': data.rechtsform_sonstiges || '',
+      'Geschäftsführer': data.geschaeftsfuehrer || '',
+      'Straße': data.strasse || '',
       'PLZ & Stadt': data.plz_stadt || '',
+      'Bundesland': data.bundesland || '',
+      'Registergericht': data.registergericht || '',
       'HRB': data.hrb || '',
       'USt-ID': data.ust_id || '',
       'Steuernummer': data.steuernummer || '',
-      'Geschäftsführer': data.geschaeftsfuehrer || '',
-      'Gründungsdatum': data.gruendung || '',
+      'Wirtschafts-ID': data.wirtschafts_id || '',
+      'Gründungsjahr': data.gruendungsjahr || '',
 
-      // Step 2: Kontakt
-      'E-Mail Kontakt': data.email_kontakt || '',
+      // Step 2: Kontakt & Erreichbarkeit
       'Telefon': data.telefon || '',
-      'WhatsApp': data.whatsapp || '',
-      'DSGVO Name': data.dsgvo_name || '',
-      'DSGVO E-Mail': data.dsgvo_email || '',
+      'Notfall-Nummer': data.notfall_nummer || '',
+      'E-Mail Kontakt': data.email_kontakt || '',
+      'E-Mail Datenschutz': data.email_datenschutz || '',
+      'Öffnung Mo-Fr': data.oeffnung_mo_fr || '',
+      'Öffnung Sa': data.oeffnung_sa || '',
+      'Öffnung So': data.oeffnung_so || '',
+      'Einsatz 24/7': data.einsatz_24_7 || '',
+      'Domain': data.domain || '',
+      'Domain gekauft': data.domain_gekauft || '',
+
+      // Step 3: Genehmigungen & Versicherung
+      'Bewachung Behörde': data.bewachung_behoerde || '',
+      'Bewachung Aktenzeichen': data.bewachung_aktenzeichen || '',
+      'Bewachung Datum': data.bewachung_datum || '',
+      'Bewacher-ID': data.bewacher_id || '',
+      'Aufsichtsbehörde': data.aufsichtsbehoerde || '',
+      'Haftpflicht Versicherung': data.haftpflicht_versicherung || '',
+      'Haftpflicht Geltungsbereich': data.haftpflicht_geltungsbereich || '',
+      'Haftpflicht Summe': data.haftpflicht_summe || '',
+      'Zertifizierungen': arrayToString(data.zertifizierungen),
+      'Zertifizierungen Sonstiges': data.zertifizierungen_sonstiges || '',
+
+      // Step 4: Leistungen
+      'Leistungen': arrayToString(data.leistungen),
+      'Leistungen Sonstiges': data.leistungen_sonstiges || '',
+      'Leistungen Beschreibung': data.leistungen_beschreibung || '',
+      'Einsatzgebiet': data.einsatzgebiet || '',
+      'Einsatzgebiet Sonstiges': data.einsatzgebiet_sonstiges || '',
+
+      // Step 5: Über das Unternehmen
+      'Mitarbeiter Anzahl': data.mitarbeiter_anzahl || '',
+      'Kunden Anzahl': data.kunden_anzahl || '',
+      'Firmengeschichte': data.firmengeschichte || '',
+      'Slogan': data.slogan || '',
+      'Sprachen': arrayToString(data.sprachen),
+      'Sprachen Sonstiges': data.sprachen_sonstiges || '',
+
+      // Step 6: Datenschutz & Hosting
+      'Verantwortlicher abweichend': data.verantwortlicher_abweichend || '',
+      'Verantwortlicher Details': data.verantwortlicher_details || '',
       'DSB vorhanden': data.dsb_vorhanden || '',
       'DSB Kontakt': data.dsb_kontakt || '',
+      'Tools Website': arrayToString(data.tools_website),
+      'Tools Newsletter': data.tools_newsletter || '',
+      'Tools Buchung': data.tools_buchung || '',
+      'Tools Sonstiges': data.tools_sonstiges || '',
+      'Hosting': data.hosting || '',
+      'Hosting Anbieter': data.hosting_anbieter || '',
+      'Hosting Standort': data.hosting_standort || '',
 
-      // Step 3: Sicherheit
-      'Sicherheit Leistungen': arrayToString(data.sicherheit_leistungen),
-      'Sicherheit Weitere': data.sicherheit_weitere || '',
-      'Wachschein-Nr': data.wachschein_nr || '',
-      'Haftpflicht': data.haftpflicht || '',
-      'Sicherheit Zielgruppe': data.sicherheit_zielgruppe || '',
-      'Sicherheit Gebiet': data.sicherheit_gebiet || '',
-      'Sicherheit USP': data.sicherheit_usp || '',
-
-      // Step 4: Reinigung
-      'Reinigung Arten': arrayToString(data.reinigung_arten),
-      'Reinigung Volumen': data.reinigung_volumen || '',
-      'Reinigung Gebiet': data.reinigung_gebiet || '',
-
-      // Step 5: Umzug
-      'Umzug Arten': arrayToString(data.umzug_arten),
-      'Umzug Region': arrayToString(data.umzug_region),
-      'Umzug Zusatz': arrayToString(data.umzug_zusatz),
-      'Umzug Formular': data.umzug_formular || '',
-
-      // Step 6: Design
-      'Primärfarbe': data.markenfarbe_primaer || '',
-      'Sekundärfarbe': data.markenfarbe_sekundaer || '',
-      'Weitere Farben': data.markenfarben_weitere || '',
-      'Tonalität': arrayToString(data.tonalitaet),
-      'Inspiration 1': data.inspiration_1 || '',
-      'Inspiration 2': data.inspiration_2 || '',
-      'Inspiration 3': data.inspiration_3 || '',
-      'Vermeiden': data.vermeiden || '',
-
-      // Step 7: Ziele
-      'Hauptziel': data.hauptziel || '',
-      'Priorität Sicherheit': data.prioritaet_sicherheit || '',
-      'Priorität Reinigung': data.prioritaet_reinigung || '',
-      'Priorität Umzug': data.prioritaet_umzug || '',
-      'Kontaktwege': arrayToString(data.kontaktwege),
+      // Step 7: Medien, Social Media & Kontaktformular
+      'Bildmaterial': data.bildmaterial || '',
+      'Hauptfarbe': data.hauptfarbe || '',
+      'Instagram': data.instagram || '',
+      'Facebook': data.facebook || '',
+      'LinkedIn': data.linkedin || '',
+      'Xing': data.xing || '',
+      'TikTok': data.tiktok || '',
+      'YouTube': data.youtube || '',
       'Google Business': data.google_business || '',
-      'Social Media': data.social_media || '',
-      'Konkurrenten': data.konkurrenten || '',
+      'Kontaktanfragen E-Mail': data.kontaktanfragen_email || '',
+      'Kontakt WhatsApp Pref': data.kontakt_whatsapp_pref || '',
+      'Kontakt WhatsApp Nr': data.kontakt_whatsapp_nr || '',
     };
 
     // ============================================

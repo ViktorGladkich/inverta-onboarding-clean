@@ -14,131 +14,173 @@ import {
 } from './FormFields';
 
 // ============================================
-// FORM DATA SHAPE
+// FORM DATA SHAPE — PROSECURE
 // ============================================
 export interface FormData {
-  // Step 1: Firma
+  // Step 1: Firma & Rechtsform
   firmenname: string;
   rechtsform: string;
-  adresse: string;
+  rechtsform_sonstiges: string;
+  geschaeftsfuehrer: string;
+  strasse: string;
   plz_stadt: string;
+  bundesland: string;
+  registergericht: string;
   hrb: string;
   ust_id: string;
   steuernummer: string;
-  geschaeftsfuehrer: string;
-  gruendung: string;
+  wirtschafts_id: string;
+  gruendungsjahr: string;
 
-  // Step 2: Kontakt & DSGVO
-  email_kontakt: string;
+  // Step 2: Kontaktdaten & Erreichbarkeit
   telefon: string;
-  whatsapp: string;
-  dsgvo_name: string;
-  dsgvo_email: string;
+  notfall_nummer: string;
+  email_kontakt: string;
+  email_datenschutz: string;
+  oeffnung_mo_fr: string;
+  oeffnung_sa: string;
+  oeffnung_so: string;
+  einsatz_24_7: string;
+  domain: string;
+  domain_gekauft: string;
+
+  // Step 3: Genehmigungen & Versicherung
+  bewachung_behoerde: string;
+  bewachung_aktenzeichen: string;
+  bewachung_datum: string;
+  bewacher_id: string;
+  aufsichtsbehoerde: string;
+  haftpflicht_versicherung: string;
+  haftpflicht_geltungsbereich: string;
+  haftpflicht_summe: string;
+  zertifizierungen: string[];
+  zertifizierungen_sonstiges: string;
+
+  // Step 4: Leistungen
+  leistungen: string[];
+  leistungen_sonstiges: string;
+  leistungen_beschreibung: string;
+  einsatzgebiet: string;
+  einsatzgebiet_sonstiges: string;
+
+  // Step 5: Über das Unternehmen
+  mitarbeiter_anzahl: string;
+  kunden_anzahl: string;
+  firmengeschichte: string;
+  slogan: string;
+  sprachen: string[];
+  sprachen_sonstiges: string;
+
+  // Step 6: Datenschutz & Hosting
+  verantwortlicher_abweichend: string;
+  verantwortlicher_details: string;
   dsb_vorhanden: string;
   dsb_kontakt: string;
+  tools_website: string[];
+  tools_newsletter: string;
+  tools_buchung: string;
+  tools_sonstiges: string;
+  hosting: string;
+  hosting_anbieter: string;
+  hosting_standort: string;
 
-  // Step 3: Sicherheit
-  sicherheit_leistungen: string[];
-  sicherheit_weitere: string;
-  wachschein_nr: string;
-  haftpflicht: string;
-  sicherheit_zielgruppe: string;
-  sicherheit_gebiet: string;
-  sicherheit_usp: string;
-
-  // Step 4: Reinigung
-  reinigung_arten: string[];
-  reinigung_volumen: string;
-  reinigung_gebiet: string;
-
-  // Step 5: Umzug
-  umzug_arten: string[];
-  umzug_region: string[];
-  umzug_zusatz: string[];
-  umzug_formular: string;
-
-  // Step 6: Design & Ziele
-  markenfarbe_primaer: string;
-  markenfarbe_sekundaer: string;
-  markenfarben_weitere: string;
-  tonalitaet: string[];
-  inspiration_1: string;
-  inspiration_2: string;
-  inspiration_3: string;
-  vermeiden: string;
-
-  // Step 7: Ziele
-  hauptziel: string;
-  prioritaet_sicherheit: string;
-  prioritaet_reinigung: string;
-  prioritaet_umzug: string;
-  kontaktwege: string[];
+  // Step 7: Medien, Social Media & Kontaktformular
+  bildmaterial: string;
+  hauptfarbe: string;
+  instagram: string;
+  facebook: string;
+  linkedin: string;
+  xing: string;
+  tiktok: string;
+  youtube: string;
   google_business: string;
-  social_media: string;
-  konkurrenten: string;
+  kontaktanfragen_email: string;
+  kontakt_whatsapp_pref: string;
+  kontakt_whatsapp_nr: string;
 }
 
 const initialFormData: FormData = {
   firmenname: '',
   rechtsform: '',
-  adresse: '',
+  rechtsform_sonstiges: '',
+  geschaeftsfuehrer: '',
+  strasse: '',
   plz_stadt: '',
+  bundesland: '',
+  registergericht: '',
   hrb: '',
   ust_id: '',
   steuernummer: '',
-  geschaeftsfuehrer: '',
-  gruendung: '',
-  email_kontakt: '',
+  wirtschafts_id: '',
+  gruendungsjahr: '',
   telefon: '',
-  whatsapp: '',
-  dsgvo_name: '',
-  dsgvo_email: '',
+  notfall_nummer: '',
+  email_kontakt: '',
+  email_datenschutz: '',
+  oeffnung_mo_fr: '',
+  oeffnung_sa: '',
+  oeffnung_so: '',
+  einsatz_24_7: '',
+  domain: '',
+  domain_gekauft: '',
+  bewachung_behoerde: '',
+  bewachung_aktenzeichen: '',
+  bewachung_datum: '',
+  bewacher_id: '',
+  aufsichtsbehoerde: '',
+  haftpflicht_versicherung: '',
+  haftpflicht_geltungsbereich: '',
+  haftpflicht_summe: '',
+  zertifizierungen: [],
+  zertifizierungen_sonstiges: '',
+  leistungen: [],
+  leistungen_sonstiges: '',
+  leistungen_beschreibung: '',
+  einsatzgebiet: '',
+  einsatzgebiet_sonstiges: '',
+  mitarbeiter_anzahl: '',
+  kunden_anzahl: '',
+  firmengeschichte: '',
+  slogan: '',
+  sprachen: [],
+  sprachen_sonstiges: '',
+  verantwortlicher_abweichend: '',
+  verantwortlicher_details: '',
   dsb_vorhanden: '',
   dsb_kontakt: '',
-  sicherheit_leistungen: [],
-  sicherheit_weitere: '',
-  wachschein_nr: '',
-  haftpflicht: '',
-  sicherheit_zielgruppe: '',
-  sicherheit_gebiet: '',
-  sicherheit_usp: '',
-  reinigung_arten: [],
-  reinigung_volumen: '',
-  reinigung_gebiet: '',
-  umzug_arten: [],
-  umzug_region: [],
-  umzug_zusatz: [],
-  umzug_formular: '',
-  markenfarbe_primaer: '',
-  markenfarbe_sekundaer: '',
-  markenfarben_weitere: '',
-  tonalitaet: [],
-  inspiration_1: '',
-  inspiration_2: '',
-  inspiration_3: '',
-  vermeiden: '',
-  hauptziel: '',
-  prioritaet_sicherheit: '',
-  prioritaet_reinigung: '',
-  prioritaet_umzug: '',
-  kontaktwege: [],
+  tools_website: [],
+  tools_newsletter: '',
+  tools_buchung: '',
+  tools_sonstiges: '',
+  hosting: '',
+  hosting_anbieter: '',
+  hosting_standort: '',
+  bildmaterial: '',
+  hauptfarbe: '',
+  instagram: '',
+  facebook: '',
+  linkedin: '',
+  xing: '',
+  tiktok: '',
+  youtube: '',
   google_business: '',
-  social_media: '',
-  konkurrenten: '',
+  kontaktanfragen_email: '',
+  kontakt_whatsapp_pref: '',
+  kontakt_whatsapp_nr: '',
 };
 
-const STORAGE_KEY = 'inverta_onboarding_data';
+const STORAGE_KEY = 'prosecure_onboarding_data';
 
 const TOTAL_STEPS = 7;
 
 const STEP_TITLES = [
   'Firma',
   'Kontakt',
-  'Sicherheit',
-  'Reinigung',
-  'Umzug',
-  'Design',
-  'Ziele',
+  'Zulassung',
+  'Leistungen',
+  'Über uns',
+  'Datenschutz',
+  'Online',
 ];
 
 // ============================================
@@ -299,11 +341,11 @@ export function OnboardingWizard() {
   const bgImages = [
     '/pixolite1.png', // Step 0: Firma
     '/pixolite2.png', // Step 1: Kontakt
-    '/pixolite3.png', // Step 2: Sicherheit
-    '/pixolite8.png', // Step 3: Reinigung
-    '/pixolite5.png', // Step 4: Umzug
-    '/pixolite6.png', // Step 5: Design
-    '/pixolite7.png', // Step 6: Ziele
+    '/pixolite3.png', // Step 2: Zulassung
+    '/pixolite8.png', // Step 3: Leistungen
+    '/pixolite5.png', // Step 4: Über uns
+    '/pixolite6.png', // Step 5: Datenschutz
+    '/pixolite7.png', // Step 6: Online
   ];
   const bgImage = bgImages[step] || '/pixolite1.png';
 
@@ -384,32 +426,34 @@ export function OnboardingWizard() {
               {step === 0 && <Step1Firma data={data} update={update} />}
               {step === 1 && <Step2Kontakt data={data} update={update} />}
               {step === 2 && (
-                <Step3Sicherheit
+                <Step3Zulassung
                   data={data}
                   update={update}
                   toggleArray={toggleArray}
                 />
               )}
               {step === 3 && (
-                <Step4Reinigung
+                <Step4Leistungen
                   data={data}
                   update={update}
                   toggleArray={toggleArray}
                 />
               )}
               {step === 4 && (
-                <Step5Umzug data={data} toggleArray={toggleArray} update={update} />
-              )}
-              {step === 5 && (
-                <Step6Design
+                <Step5UeberUns
                   data={data}
                   update={update}
                   toggleArray={toggleArray}
                 />
               )}
-              {step === 6 && (
-                <Step7Ziele data={data} update={update} toggleArray={toggleArray} />
+              {step === 5 && (
+                <Step6Datenschutz
+                  data={data}
+                  update={update}
+                  toggleArray={toggleArray}
+                />
               )}
+              {step === 6 && <Step7Online data={data} update={update} />}
             </motion.div>
           </AnimatePresence>
 
@@ -487,56 +531,104 @@ function Step1Firma({
         title="FIRMEN-"
         italic="daten."
         priority="KRITISCH"
-        description="Für Impressum, Verträge und rechtssichere Umsetzung."
+        description="Für das Impressum, Verträge und die rechtssichere Umsetzung Ihrer Website."
       />
 
       <Input
-        label="Firmenname (vollständig)"
+        label="Vollständiger, eingetragener Firmenname"
         name="firmenname"
         value={data.firmenname}
         onChange={(v) => update('firmenname', v)}
         required
-        placeholder="z.B. Mustermann Sicherheit GmbH"
+        placeholder="z.B. ProSecure GmbH"
+        hint="z.B. ProSecure GmbH / UG (haftungsbeschränkt) / e.K. / Max Mustermann – ProSecure"
       />
 
-      <Input
+      <RadioGroup
         label="Rechtsform"
         name="rechtsform"
         value={data.rechtsform}
         onChange={(v) => update('rechtsform', v)}
-        placeholder="GmbH / UG / GbR / Einzelunternehmen"
-        required
+        options={[
+          { value: 'gmbh', label: 'GmbH' },
+          { value: 'ug', label: 'UG (haftungsbeschränkt)' },
+          { value: 'gbr', label: 'GbR' },
+          { value: 'einzel', label: 'Einzelunternehmen / e.K.' },
+          { value: 'sonstiges', label: 'Sonstiges' },
+        ]}
       />
 
+      {data.rechtsform === 'sonstiges' && (
+        <Input
+          label="Rechtsform — bitte angeben"
+          name="rechtsform_sonstiges"
+          value={data.rechtsform_sonstiges}
+          onChange={(v) => update('rechtsform_sonstiges', v)}
+        />
+      )}
+
       <Input
-        label="Geschäftsadresse — Straße & Hausnummer"
-        name="adresse"
-        value={data.adresse}
-        onChange={(v) => update('adresse', v)}
+        label="Geschäftsführer / verantwortlicher Inhaber (V.i.S.d. § 5 TMG)"
+        name="geschaeftsfuehrer"
+        value={data.geschaeftsfuehrer}
+        onChange={(v) => update('geschaeftsfuehrer', v)}
+        required
+        placeholder="Vor- und Nachname"
+      />
+
+      <FieldGroupLabel>Geschäftsadresse (Hauptsitz)</FieldGroupLabel>
+
+      <Input
+        label="Straße & Hausnummer"
+        name="strasse"
+        value={data.strasse}
+        onChange={(v) => update('strasse', v)}
         required
         placeholder="Musterstraße 1"
       />
 
-      <Input
-        label="PLZ & Stadt"
-        name="plz_stadt"
-        value={data.plz_stadt}
-        onChange={(v) => update('plz_stadt', v)}
-        required
-        placeholder="01217 Dresden"
-      />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Input
+          label="PLZ & Ort"
+          name="plz_stadt"
+          value={data.plz_stadt}
+          onChange={(v) => update('plz_stadt', v)}
+          required
+          placeholder="01217 Dresden"
+        />
+        <Input
+          label="Bundesland"
+          name="bundesland"
+          value={data.bundesland}
+          onChange={(v) => update('bundesland', v)}
+          placeholder="z.B. Sachsen"
+        />
+      </div>
 
-      <Input
-        label="Handelsregister-Nr. + Amtsgericht"
-        name="hrb"
-        value={data.hrb}
-        onChange={(v) => update('hrb', v)}
-        placeholder="HRB 12345, Amtsgericht Dresden"
-      />
+      <FieldGroupLabel>Handelsregister (falls GmbH / UG / e.K.)</FieldGroupLabel>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <Input
-          label="Umsatzsteuer-ID"
+          label="Registergericht"
+          name="registergericht"
+          value={data.registergericht}
+          onChange={(v) => update('registergericht', v)}
+          placeholder="z.B. Amtsgericht Dresden"
+        />
+        <Input
+          label="Handelsregisternummer"
+          name="hrb"
+          value={data.hrb}
+          onChange={(v) => update('hrb', v)}
+          placeholder="z.B. HRB 12345"
+        />
+      </div>
+
+      <FieldGroupLabel>Steuerliche Angaben</FieldGroupLabel>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Input
+          label="Umsatzsteuer-ID (§ 27a UStG)"
           name="ust_id"
           value={data.ust_id}
           onChange={(v) => update('ust_id', v)}
@@ -552,19 +644,19 @@ function Step1Firma({
       </div>
 
       <Input
-        label="Vertretungsberechtigte Person (Geschäftsführer)"
-        name="geschaeftsfuehrer"
-        value={data.geschaeftsfuehrer}
-        onChange={(v) => update('geschaeftsfuehrer', v)}
-        required
+        label="Wirtschafts-ID (sofern vorhanden)"
+        name="wirtschafts_id"
+        value={data.wirtschafts_id}
+        onChange={(v) => update('wirtschafts_id', v)}
       />
 
       <Input
-        label="Datum der Geschäftsgründung"
-        name="gruendung"
-        value={data.gruendung}
-        onChange={(v) => update('gruendung', v)}
-        placeholder="z.B. 03/2020"
+        label="Gründungsjahr des Unternehmens"
+        name="gruendungsjahr"
+        value={data.gruendungsjahr}
+        onChange={(v) => update('gruendungsjahr', v)}
+        placeholder="z.B. 2018"
+        hint={'Aktuell steht im Code „seit 2008" — bitte korrigieren.'}
       />
     </div>
   );
@@ -582,26 +674,16 @@ function Step2Kontakt({
       <SectionHeading
         step="TEIL 02 / KONTAKT"
         title="KONTAKT &"
-        italic="DSGVO."
+        italic="Erreichbarkeit."
         priority="KRITISCH"
-        description="Kontaktdaten für die Website und Datenschutz-Verantwortliche."
+        description="Kontaktdaten für Impressum, Kontaktseite und Footer."
       />
 
-      <FieldGroupLabel>Öffentliche Kontaktdaten (Website)</FieldGroupLabel>
-
-      <Input
-        label="E-Mail (Kontakt)"
-        name="email_kontakt"
-        type="email"
-        value={data.email_kontakt}
-        onChange={(v) => update('email_kontakt', v)}
-        required
-        placeholder="info@firma.de"
-      />
+      <FieldGroupLabel>Telefon</FieldGroupLabel>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <Input
-          label="Telefon"
+          label="Telefon (Hauptkontakt, geschäftlich)"
           name="telefon"
           type="tel"
           value={data.telefon}
@@ -609,41 +691,450 @@ function Step2Kontakt({
           required
         />
         <Input
-          label="WhatsApp / Signal (optional)"
-          name="whatsapp"
+          label="Notfall- / 24h-Nummer (falls separat)"
+          name="notfall_nummer"
           type="tel"
-          value={data.whatsapp}
-          onChange={(v) => update('whatsapp', v)}
+          value={data.notfall_nummer}
+          onChange={(v) => update('notfall_nummer', v)}
         />
       </div>
 
-      <FieldGroupLabel>Datenschutz-verantwortliche Person</FieldGroupLabel>
+      <FieldGroupLabel>E-Mail</FieldGroupLabel>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <Input
+        label="Offizielle E-Mail-Adresse"
+        name="email_kontakt"
+        type="email"
+        value={data.email_kontakt}
+        onChange={(v) => update('email_kontakt', v)}
+        required
+        placeholder="kontakt@prosecure-dresden.de"
+        hint="Aktueller Platzhalter: kontakt@prosecure-dresden.de"
+      />
+
+      <Input
+        label="Datenschutz-E-Mail (falls separat)"
+        name="email_datenschutz"
+        type="email"
+        value={data.email_datenschutz}
+        onChange={(v) => update('email_datenschutz', v)}
+      />
+
+      <FieldGroupLabel>Öffnungs- / Erreichbarkeitszeiten Büro</FieldGroupLabel>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         <Input
-          label="Name"
-          name="dsgvo_name"
-          value={data.dsgvo_name}
-          onChange={(v) => update('dsgvo_name', v)}
+          label="Mo – Fr"
+          name="oeffnung_mo_fr"
+          value={data.oeffnung_mo_fr}
+          onChange={(v) => update('oeffnung_mo_fr', v)}
+          placeholder="z.B. 08:00 – 18:00"
         />
         <Input
-          label="E-Mail DSGVO"
-          name="dsgvo_email"
-          type="email"
-          value={data.dsgvo_email}
-          onChange={(v) => update('dsgvo_email', v)}
+          label="Samstag"
+          name="oeffnung_sa"
+          value={data.oeffnung_sa}
+          onChange={(v) => update('oeffnung_sa', v)}
+          placeholder="z.B. geschlossen"
+        />
+        <Input
+          label="Sonntag"
+          name="oeffnung_so"
+          value={data.oeffnung_so}
+          onChange={(v) => update('oeffnung_so', v)}
+          placeholder="z.B. geschlossen"
         />
       </div>
 
       <RadioGroup
-        label="Externer Datenschutzbeauftragter (DSB) vorhanden?"
+        label="Einsatzbereitschaft 24/7?"
+        name="einsatz_24_7"
+        value={data.einsatz_24_7}
+        onChange={(v) => update('einsatz_24_7', v)}
+        options={[
+          { value: 'ja', label: 'Ja — wir sind rund um die Uhr erreichbar' },
+          { value: 'nein', label: 'Nein' },
+        ]}
+      />
+
+      <FieldGroupLabel>Internetdomain</FieldGroupLabel>
+
+      <Input
+        label="Gewünschte Domain"
+        name="domain"
+        value={data.domain}
+        onChange={(v) => update('domain', v)}
+        placeholder="z.B. prosecure-dresden.de"
+        hint="Aktueller Platzhalter: prosecure-dresden.de"
+      />
+
+      <RadioGroup
+        label="Haben Sie die Domain bereits gekauft?"
+        name="domain_gekauft"
+        value={data.domain_gekauft}
+        onChange={(v) => update('domain_gekauft', v)}
+        options={[
+          { value: 'ja', label: 'Ja, bereits registriert' },
+          { value: 'nein', label: 'Nein, bitte übernehmen' },
+        ]}
+      />
+    </div>
+  );
+}
+
+function Step3Zulassung({
+  data,
+  update,
+  toggleArray,
+}: {
+  data: FormData;
+  update: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
+  toggleArray: (key: keyof FormData, value: string) => void;
+}) {
+  const zertOptions = [
+    'DIN 77200',
+    'ISO 9001',
+    'BDSW-Mitglied',
+    'IHK-Sachkundeprüfung § 34a',
+  ];
+
+  return (
+    <div className="flex flex-col gap-5">
+      <SectionHeading
+        step="TEIL 03 / ZULASSUNG"
+        title="GENEHMIGUNGEN &"
+        italic="Versicherung."
+        priority="KRITISCH"
+        description="Pflichtangaben nach § 34a GewO für das Bewachungsgewerbe."
+      />
+
+      <FieldGroupLabel>Bewachungserlaubnis nach § 34a GewO</FieldGroupLabel>
+
+      <Input
+        label="Erteilende Behörde"
+        name="bewachung_behoerde"
+        value={data.bewachung_behoerde}
+        onChange={(v) => update('bewachung_behoerde', v)}
+        placeholder="z.B. Landesdirektion Sachsen, Ordnungsamt Dresden"
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Input
+          label="Aktenzeichen / Erlaubnisnummer"
+          name="bewachung_aktenzeichen"
+          value={data.bewachung_aktenzeichen}
+          onChange={(v) => update('bewachung_aktenzeichen', v)}
+        />
+        <Input
+          label="Datum der Erteilung"
+          name="bewachung_datum"
+          value={data.bewachung_datum}
+          onChange={(v) => update('bewachung_datum', v)}
+          placeholder="TT.MM.JJJJ"
+        />
+      </div>
+
+      <FieldGroupLabel>Bewacherregister & Aufsicht</FieldGroupLabel>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Input
+          label="Bewacher-ID des Unternehmens (BWR)"
+          name="bewacher_id"
+          value={data.bewacher_id}
+          onChange={(v) => update('bewacher_id', v)}
+        />
+        <Input
+          label="Zuständige Aufsichtsbehörde"
+          name="aufsichtsbehoerde"
+          value={data.aufsichtsbehoerde}
+          onChange={(v) => update('aufsichtsbehoerde', v)}
+        />
+      </div>
+
+      <FieldGroupLabel>Berufshaftpflichtversicherung</FieldGroupLabel>
+
+      <Input
+        label="Versicherung (Name)"
+        name="haftpflicht_versicherung"
+        value={data.haftpflicht_versicherung}
+        onChange={(v) => update('haftpflicht_versicherung', v)}
+        placeholder="z.B. HDI, Allianz, Gothaer..."
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Input
+          label="Geltungsbereich"
+          name="haftpflicht_geltungsbereich"
+          value={data.haftpflicht_geltungsbereich}
+          onChange={(v) => update('haftpflicht_geltungsbereich', v)}
+          placeholder="z.B. Deutschland / EU"
+        />
+        <Input
+          label="Versicherungssumme"
+          name="haftpflicht_summe"
+          value={data.haftpflicht_summe}
+          onChange={(v) => update('haftpflicht_summe', v)}
+          placeholder="z.B. 3.000.000 €"
+        />
+      </div>
+
+      <FieldGroupLabel>
+        Zertifizierungen & Mitgliedschaften (vertrauensbildend)
+      </FieldGroupLabel>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+        {zertOptions.map((opt) => (
+          <Checkbox
+            key={opt}
+            label={opt}
+            checked={data.zertifizierungen.includes(opt)}
+            onChange={() => toggleArray('zertifizierungen', opt)}
+          />
+        ))}
+      </div>
+
+      <Input
+        label="Sonstige Zertifizierungen"
+        name="zertifizierungen_sonstiges"
+        value={data.zertifizierungen_sonstiges}
+        onChange={(v) => update('zertifizierungen_sonstiges', v)}
+      />
+    </div>
+  );
+}
+
+function Step4Leistungen({
+  data,
+  update,
+  toggleArray,
+}: {
+  data: FormData;
+  update: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
+  toggleArray: (key: keyof FormData, value: string) => void;
+}) {
+  const leistungsOptions = [
+    'Baustellenbewachung',
+    'Objektschutz / Werkschutz / Revierdienst',
+    'Alarmaufschaltung / 24h Notruf-Service',
+    'Veranstaltungs- / Eventsicherheit',
+    'Personenschutz',
+    'Ladendetektiv / Kaufhausdetektiv',
+    'Empfangsdienst / Pförtnerdienst',
+    'City-Streife / Revier-Streifendienst',
+    'Geld- und Werttransport',
+    'Brandwache',
+    'Asyl- / Flüchtlingsunterkünfte',
+    'Sicherheitsberatung',
+  ];
+
+  return (
+    <div className="flex flex-col gap-5">
+      <SectionHeading
+        step="TEIL 04 / LEISTUNGEN"
+        title="SICHERHEITS-"
+        italic="leistungen."
+        priority="KRITISCH"
+        description="Aktuell zeigt die Website 4 Leistungen: Baustellenbewachung, Objektschutz, Alarmaufschaltung, Eventsicherheit. Bitte bestätigen oder ergänzen."
+      />
+
+      <FieldGroupLabel>
+        Welche dieser Leistungen bieten Sie tatsächlich an? (Mehrfachauswahl)
+      </FieldGroupLabel>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
+        {leistungsOptions.map((opt) => (
+          <Checkbox
+            key={opt}
+            label={opt}
+            checked={data.leistungen.includes(opt)}
+            onChange={() => toggleArray('leistungen', opt)}
+          />
+        ))}
+      </div>
+
+      <Input
+        label="Sonstige Leistungen"
+        name="leistungen_sonstiges"
+        value={data.leistungen_sonstiges}
+        onChange={(v) => update('leistungen_sonstiges', v)}
+      />
+
+      <TextArea
+        label="Bitte 2–4 Sätze zu JEDER angebotenen Leistung"
+        name="leistungen_beschreibung"
+        value={data.leistungen_beschreibung}
+        onChange={(v) => update('leistungen_beschreibung', v)}
+        rows={10}
+        placeholder={
+          'Leistung 1: ...\nBeschreibung: Was wird genau angeboten, für wen, welche Besonderheiten?\n\nLeistung 2: ...\nBeschreibung: ...'
+        }
+      />
+
+      <RadioGroup
+        label="In welchem Einsatzgebiet sind Sie tätig?"
+        name="einsatzgebiet"
+        value={data.einsatzgebiet}
+        onChange={(v) => update('einsatzgebiet', v)}
+        options={[
+          { value: 'dresden', label: 'Nur Dresden' },
+          { value: 'sachsen', label: 'Großraum Dresden / Sachsen' },
+          { value: 'bundesweit', label: 'Bundesweit' },
+          { value: 'sonstiges', label: 'Sonstiges' },
+        ]}
+      />
+
+      {data.einsatzgebiet === 'sonstiges' && (
+        <Input
+          label="Einsatzgebiet — bitte angeben"
+          name="einsatzgebiet_sonstiges"
+          value={data.einsatzgebiet_sonstiges}
+          onChange={(v) => update('einsatzgebiet_sonstiges', v)}
+        />
+      )}
+    </div>
+  );
+}
+
+function Step5UeberUns({
+  data,
+  update,
+  toggleArray,
+}: {
+  data: FormData;
+  update: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
+  toggleArray: (key: keyof FormData, value: string) => void;
+}) {
+  const sprachenOptions = ['Deutsch', 'Englisch', 'Russisch'];
+
+  return (
+    <div className="flex flex-col gap-5">
+      <SectionHeading
+        step="TEIL 05 / ÜBER UNS"
+        title="ÜBER DAS"
+        italic="Unternehmen."
+        priority="WICHTIG"
+        description={'Inhalte für Hero, „Über uns" und SEO.'}
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <Input
+          label="Anzahl der Mitarbeiter (ungefähr)"
+          name="mitarbeiter_anzahl"
+          value={data.mitarbeiter_anzahl}
+          onChange={(v) => update('mitarbeiter_anzahl', v)}
+          placeholder="z.B. 25"
+        />
+        <Input
+          label="Betreute Kunden / Objekte"
+          name="kunden_anzahl"
+          value={data.kunden_anzahl}
+          onChange={(v) => update('kunden_anzahl', v)}
+          placeholder="z.B. 430+"
+          hint='Aktuell steht „430+ zufriedene Kunden" — stimmt das?'
+        />
+      </div>
+
+      <TextArea
+        label="Kurze Firmengeschichte / Selbstbeschreibung (3–5 Sätze)"
+        name="firmengeschichte"
+        value={data.firmengeschichte}
+        onChange={(v) => update('firmengeschichte', v)}
+        rows={6}
+        placeholder="Was macht Ihr Unternehmen besonders? Warum sollte ein Kunde Sie wählen?"
+      />
+
+      <Input
+        label="Slogan / Claim (falls vorhanden)"
+        name="slogan"
+        value={data.slogan}
+        onChange={(v) => update('slogan', v)}
+        placeholder='Aktuell: "Ihr Schutz. Unsere Mission."'
+      />
+
+      <FieldGroupLabel>
+        Sprachen, in denen Sie Kunden betreuen (Mehrfachauswahl)
+      </FieldGroupLabel>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-1">
+        {sprachenOptions.map((opt) => (
+          <Checkbox
+            key={opt}
+            label={opt}
+            checked={data.sprachen.includes(opt)}
+            onChange={() => toggleArray('sprachen', opt)}
+          />
+        ))}
+      </div>
+
+      <Input
+        label="Weitere Sprachen"
+        name="sprachen_sonstiges"
+        value={data.sprachen_sonstiges}
+        onChange={(v) => update('sprachen_sonstiges', v)}
+      />
+    </div>
+  );
+}
+
+function Step6Datenschutz({
+  data,
+  update,
+  toggleArray,
+}: {
+  data: FormData;
+  update: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
+  toggleArray: (key: keyof FormData, value: string) => void;
+}) {
+  const toolsOptions = [
+    'Google Analytics',
+    'Google Maps (Einbettung)',
+    'Google Fonts (lokal)',
+    'Facebook Pixel / Meta Ads',
+    'YouTube-Videos eingebettet',
+  ];
+
+  return (
+    <div className="flex flex-col gap-5">
+      <SectionHeading
+        step="TEIL 06 / DATENSCHUTZ"
+        title="DATENSCHUTZ &"
+        italic="Hosting."
+        priority="KRITISCH"
+        description="Für die DSGVO-konforme Datenschutzerklärung."
+      />
+
+      <RadioGroup
+        label="Verantwortlicher für die Datenverarbeitung"
+        name="verantwortlicher_abweichend"
+        value={data.verantwortlicher_abweichend}
+        onChange={(v) => update('verantwortlicher_abweichend', v)}
+        options={[
+          {
+            value: 'identisch',
+            label: 'Identisch mit Geschäftsführer & Geschäftsadresse',
+          },
+          { value: 'abweichend', label: 'Abweichend (bitte unten angeben)' },
+        ]}
+      />
+
+      {data.verantwortlicher_abweichend === 'abweichend' && (
+        <TextArea
+          label="Abweichender Verantwortlicher — Name & Adresse"
+          name="verantwortlicher_details"
+          value={data.verantwortlicher_details}
+          onChange={(v) => update('verantwortlicher_details', v)}
+          rows={3}
+        />
+      )}
+
+      <RadioGroup
+        label="Externer / interner Datenschutzbeauftragter vorhanden?"
         name="dsb_vorhanden"
         value={data.dsb_vorhanden}
         onChange={(v) => update('dsb_vorhanden', v)}
         options={[
-          { value: 'ja', label: 'Ja' },
           { value: 'nein', label: 'Nein' },
-          { value: 'unsicher', label: 'Nicht sicher' },
+          { value: 'ja', label: 'Ja' },
         ]}
       />
 
@@ -655,453 +1146,215 @@ function Step2Kontakt({
           onChange={(v) => update('dsb_kontakt', v)}
         />
       )}
-    </div>
-  );
-}
 
-function Step3Sicherheit({
-  data,
-  update,
-  toggleArray,
-}: {
-  data: FormData;
-  update: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
-  toggleArray: (key: keyof FormData, value: string) => void;
-}) {
-  const sicherheitOptions = [
-    'Objektschutz',
-    'Personenschutz',
-    'Veranstaltungsschutz',
-    'Empfangsdienst',
-    'Wachdienst',
-    'Baustellenbewachung',
-    'Citystreife',
-    'Ladendetektiv',
-    'Notruf-Service',
-  ];
-
-  return (
-    <div className="flex flex-col gap-5">
-      <SectionHeading
-        step="TEIL 03 / SERVICE 01"
-        title="SICHER-"
-        italic="heit."
-        priority="KRITISCH"
-        description="Details zur Sicherheitsdienstleistung — diese werden auf der Website präsentiert."
-      />
-
-      <FieldGroupLabel>Angebotene Leistungen (Mehrfachauswahl)</FieldGroupLabel>
+      <FieldGroupLabel>
+        Welche Tools / Dienste werden auf der Website genutzt? (Mehrfachauswahl)
+      </FieldGroupLabel>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-        {sicherheitOptions.map((opt) => (
+        {toolsOptions.map((opt) => (
           <Checkbox
             key={opt}
             label={opt}
-            checked={data.sicherheit_leistungen.includes(opt)}
-            onChange={() => toggleArray('sicherheit_leistungen', opt)}
-          />
-        ))}
-      </div>
-
-      <Input
-        label="Weitere Leistungen"
-        name="sicherheit_weitere"
-        value={data.sicherheit_weitere}
-        onChange={(v) => update('sicherheit_weitere', v)}
-      />
-
-      <FieldGroupLabel>Lizenzen & Versicherung</FieldGroupLabel>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <Input
-          label="Wachschein-Nr. (§34a GewO)"
-          name="wachschein_nr"
-          value={data.wachschein_nr}
-          onChange={(v) => update('wachschein_nr', v)}
-        />
-        <Input
-          label="Berufshaftpflicht-Versicherer"
-          name="haftpflicht"
-          value={data.haftpflicht}
-          onChange={(v) => update('haftpflicht', v)}
-        />
-      </div>
-
-      <RadioGroup
-        label="Zielgruppe"
-        name="sicherheit_zielgruppe"
-        value={data.sicherheit_zielgruppe}
-        onChange={(v) => update('sicherheit_zielgruppe', v)}
-        options={[
-          { value: 'b2b', label: 'B2B (Geschäftskunden)' },
-          { value: 'b2c', label: 'B2C (Privatkunden)' },
-          { value: 'beides', label: 'Beides' },
-        ]}
-      />
-
-      <Input
-        label="Service-Gebiet (Städte / PLZ / Bundesländer)"
-        name="sicherheit_gebiet"
-        value={data.sicherheit_gebiet}
-        onChange={(v) => update('sicherheit_gebiet', v)}
-        placeholder="z.B. Dresden, Sachsen"
-      />
-
-      <TextArea
-        label="Was unterscheidet Sie von der Konkurrenz?"
-        name="sicherheit_usp"
-        value={data.sicherheit_usp}
-        onChange={(v) => update('sicherheit_usp', v)}
-        rows={4}
-      />
-    </div>
-  );
-}
-
-function Step4Reinigung({
-  data,
-  update,
-  toggleArray,
-}: {
-  data: FormData;
-  update: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
-  toggleArray: (key: keyof FormData, value: string) => void;
-}) {
-  const reinigungOptions = [
-    'Büroreinigung',
-    'Industriereinigung',
-    'Privathaushalt',
-    'Grundreinigung',
-    'Glasreinigung',
-    'Teppichreinigung',
-    'Treppenhausreinigung',
-    'Baureinigung',
-    'Sonderreinigung',
-  ];
-
-  return (
-    <div className="flex flex-col gap-5">
-      <SectionHeading
-        step="TEIL 03 / SERVICE 02"
-        title="REINI-"
-        italic="gung."
-        priority="KRITISCH"
-        description="Details zur Reinigungsdienstleistung."
-      />
-
-      <FieldGroupLabel>Angebotene Reinigungsarten (Mehrfachauswahl)</FieldGroupLabel>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-        {reinigungOptions.map((opt) => (
-          <Checkbox
-            key={opt}
-            label={opt}
-            checked={data.reinigung_arten.includes(opt)}
-            onChange={() => toggleArray('reinigung_arten', opt)}
+            checked={data.tools_website.includes(opt)}
+            onChange={() => toggleArray('tools_website', opt)}
           />
         ))}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <Input
-          label="Mindestauftragsvolumen (€)"
-          name="reinigung_volumen"
-          type="number"
-          value={data.reinigung_volumen}
-          onChange={(v) => update('reinigung_volumen', v)}
+          label="Newsletter-Tool (welches?)"
+          name="tools_newsletter"
+          value={data.tools_newsletter}
+          onChange={(v) => update('tools_newsletter', v)}
         />
         <Input
-          label="Service-Gebiet (PLZ-Radius)"
-          name="reinigung_gebiet"
-          value={data.reinigung_gebiet}
-          onChange={(v) => update('reinigung_gebiet', v)}
+          label="Online-Buchungstool"
+          name="tools_buchung"
+          value={data.tools_buchung}
+          onChange={(v) => update('tools_buchung', v)}
         />
       </div>
-    </div>
-  );
-}
 
-function Step5Umzug({
-  data,
-  toggleArray,
-  update,
-}: {
-  data: FormData;
-  update: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
-  toggleArray: (key: keyof FormData, value: string) => void;
-}) {
-  return (
-    <div className="flex flex-col gap-5">
-      <SectionHeading
-        step="TEIL 03 / SERVICE 03"
-        title="UMZUG."
-        priority="KRITISCH"
-        description="Details zum Umzugsservice."
+      <Input
+        label="Sonstige Tools / Dienste"
+        name="tools_sonstiges"
+        value={data.tools_sonstiges}
+        onChange={(v) => update('tools_sonstiges', v)}
       />
 
-      <FieldGroupLabel>Art der Umzüge (Mehrfachauswahl)</FieldGroupLabel>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-        {['Privatumzüge', 'Firmenumzüge', 'Senioren-Umzüge'].map((opt) => (
-          <Checkbox
-            key={opt}
-            label={opt}
-            checked={data.umzug_arten.includes(opt)}
-            onChange={() => toggleArray('umzug_arten', opt)}
-          />
-        ))}
-      </div>
-
-      <FieldGroupLabel>Region (Mehrfachauswahl)</FieldGroupLabel>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-1">
-        {['Inland', 'EU', 'International'].map((opt) => (
-          <Checkbox
-            key={opt}
-            label={opt}
-            checked={data.umzug_region.includes(opt)}
-            onChange={() => toggleArray('umzug_region', opt)}
-          />
-        ))}
-      </div>
-
-      <FieldGroupLabel>Inkludierte Zusatzleistungen</FieldGroupLabel>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-        {[
-          'Verpackungsservice',
-          'Möbelmontage',
-          'Beiladung',
-          'Klaviertransport',
-          'Entsorgung',
-          'Lagerung',
-        ].map((opt) => (
-          <Checkbox
-            key={opt}
-            label={opt}
-            checked={data.umzug_zusatz.includes(opt)}
-            onChange={() => toggleArray('umzug_zusatz', opt)}
-          />
-        ))}
-      </div>
+      <FieldGroupLabel>Hosting der Website</FieldGroupLabel>
 
       <RadioGroup
-        label="Online-Anfrage-Formular gewünscht?"
-        name="umzug_formular"
-        value={data.umzug_formular}
-        onChange={(v) => update('umzug_formular', v)}
+        label="Hosting-Anbieter"
+        name="hosting"
+        value={data.hosting}
+        onChange={(v) => update('hosting', v)}
         options={[
-          { value: 'kalkulator', label: 'Ja, mit Volumen-Kalkulator' },
-          { value: 'einfach', label: 'Ja, einfaches Formular' },
-          { value: 'nein', label: 'Nein' },
+          {
+            value: 'inverta',
+            label: 'INVERTA übernimmt (Empfehlung: Vercel / Hetzner DE)',
+          },
+          { value: 'eigener', label: 'Eigener Anbieter (bitte angeben)' },
         ]}
+      />
+
+      {data.hosting === 'eigener' && (
+        <Input
+          label="Eigener Hosting-Anbieter"
+          name="hosting_anbieter"
+          value={data.hosting_anbieter}
+          onChange={(v) => update('hosting_anbieter', v)}
+        />
+      )}
+
+      <Input
+        label="Standort des Servers (für DSE wichtig)"
+        name="hosting_standort"
+        value={data.hosting_standort}
+        onChange={(v) => update('hosting_standort', v)}
+        placeholder="z.B. Deutschland, EU"
       />
     </div>
   );
 }
 
-function Step6Design({
+function Step7Online({
   data,
   update,
-  toggleArray,
 }: {
   data: FormData;
   update: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
-  toggleArray: (key: keyof FormData, value: string) => void;
 }) {
-  const moods = [
-    'Seriös & vertrauensvoll',
-    'Modern & technisch',
-    'Premium & exklusiv',
-    'Freundlich & nahbar',
-    'Stark & dominant',
-    'Schlicht & klar',
-  ];
-
   return (
     <div className="flex flex-col gap-5">
       <SectionHeading
-        step="TEIL 04 / DESIGN"
-        title="DESIGN &"
-        italic="Branding."
+        step="TEIL 07 / ONLINE"
+        title="MEDIEN &"
+        italic="Online-Präsenz."
         priority="WICHTIG"
-        description="Visuelle Identität für Ihre Website."
+        description="Bilder, Social Media und Kontaktformular-Empfänger."
       />
 
-      <FieldGroupLabel>Markenfarben (HEX-Codes)</FieldGroupLabel>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <Input
-          label="Primärfarbe"
-          name="markenfarbe_primaer"
-          value={data.markenfarbe_primaer}
-          onChange={(v) => update('markenfarbe_primaer', v)}
-          placeholder="#1A4D8C"
-        />
-        <Input
-          label="Sekundärfarbe"
-          name="markenfarbe_sekundaer"
-          value={data.markenfarbe_sekundaer}
-          onChange={(v) => update('markenfarbe_sekundaer', v)}
-          placeholder="#F5A623"
-        />
-      </div>
-
-      <Input
-        label="Weitere Brand-Farben oder Notizen"
-        name="markenfarben_weitere"
-        value={data.markenfarben_weitere}
-        onChange={(v) => update('markenfarben_weitere', v)}
-      />
-
-      <FieldGroupLabel>Tonalität & Stimmung (Mehrfachauswahl)</FieldGroupLabel>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-        {moods.map((opt) => (
-          <Checkbox
-            key={opt}
-            label={opt}
-            checked={data.tonalitaet.includes(opt)}
-            onChange={() => toggleArray('tonalitaet', opt)}
-          />
-        ))}
-      </div>
-
-      <FieldGroupLabel>Inspiration (bis zu 3 Webseiten)</FieldGroupLabel>
-
-      <Input
-        label="Website 1 — URL & was gefällt"
-        name="inspiration_1"
-        value={data.inspiration_1}
-        onChange={(v) => update('inspiration_1', v)}
-        placeholder="https://example.com — klares Design"
-      />
-      <Input
-        label="Website 2"
-        name="inspiration_2"
-        value={data.inspiration_2}
-        onChange={(v) => update('inspiration_2', v)}
-      />
-      <Input
-        label="Website 3"
-        name="inspiration_3"
-        value={data.inspiration_3}
-        onChange={(v) => update('inspiration_3', v)}
-      />
-
-      <TextArea
-        label="Was wir vermeiden sollen"
-        name="vermeiden"
-        value={data.vermeiden}
-        onChange={(v) => update('vermeiden', v)}
-        rows={3}
-        placeholder="z.B. zu bunte Farben, Stockfoto-Look..."
-      />
-    </div>
-  );
-}
-
-function Step7Ziele({
-  data,
-  update,
-  toggleArray,
-}: {
-  data: FormData;
-  update: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
-  toggleArray: (key: keyof FormData, value: string) => void;
-}) {
-  return (
-    <div className="flex flex-col gap-5">
-      <SectionHeading
-        step="TEIL 05 / ZIELE"
-        title="ZIELE &"
-        italic="Marketing."
-        priority="WICHTIG"
-        description="Was soll die Website erreichen?"
-      />
+      <FieldGroupLabel>Bildmaterial</FieldGroupLabel>
 
       <RadioGroup
-        label="Hauptziel der Website"
-        name="hauptziel"
-        value={data.hauptziel}
-        onChange={(v) => update('hauptziel', v)}
+        label="Haben Sie eigene Fotos? (Mitarbeiter in Uniform, Fahrzeuge, Objekte, Büro)"
+        name="bildmaterial"
+        value={data.bildmaterial}
+        onChange={(v) => update('bildmaterial', v)}
         options={[
-          { value: 'leads', label: 'Mehr Anfragen / Leads generieren' },
-          { value: 'branding', label: 'Vertrauen aufbauen / Branding stärken' },
-          { value: 'info', label: 'Bestehende Kunden besser informieren' },
-          { value: 'booking', label: 'Online-Buchungen ermöglichen' },
-          { value: 'recruiting', label: 'Mitarbeiter-Recruiting' },
+          { value: 'ja', label: 'Ja — sende ich mit' },
+          { value: 'stock', label: 'Nein — bitte hochwertige Stock-Fotos einsetzen' },
+          { value: 'shoot', label: 'Wir können einen Foto-Shoot organisieren' },
         ]}
       />
 
-      <FieldGroupLabel>Priorität der Services (1 = wichtigster Fokus)</FieldGroupLabel>
+      <Input
+        label="Bevorzugte Hauptfarbe neben Gold / Blau?"
+        name="hauptfarbe"
+        value={data.hauptfarbe}
+        onChange={(v) => update('hauptfarbe', v)}
+        placeholder="HEX-Code, z.B. #7CB3D1"
+        hint="Aktuell: Dunkel + Gold-Akzent + Hellblau #7CB3D1"
+      />
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <FieldGroupLabel>
+        Social Media (nur ausfüllen, was existiert)
+      </FieldGroupLabel>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <Input
-          label="Sicherheit"
-          name="prioritaet_sicherheit"
-          type="number"
-          value={data.prioritaet_sicherheit}
-          onChange={(v) => update('prioritaet_sicherheit', v)}
-          placeholder="1, 2 oder 3"
+          label="Instagram"
+          name="instagram"
+          type="url"
+          value={data.instagram}
+          onChange={(v) => update('instagram', v)}
+          placeholder="https://"
         />
         <Input
-          label="Reinigung"
-          name="prioritaet_reinigung"
-          type="number"
-          value={data.prioritaet_reinigung}
-          onChange={(v) => update('prioritaet_reinigung', v)}
-          placeholder="1, 2 oder 3"
+          label="Facebook"
+          name="facebook"
+          type="url"
+          value={data.facebook}
+          onChange={(v) => update('facebook', v)}
+          placeholder="https://"
         />
         <Input
-          label="Umzug"
-          name="prioritaet_umzug"
-          type="number"
-          value={data.prioritaet_umzug}
-          onChange={(v) => update('prioritaet_umzug', v)}
-          placeholder="1, 2 oder 3"
+          label="LinkedIn"
+          name="linkedin"
+          type="url"
+          value={data.linkedin}
+          onChange={(v) => update('linkedin', v)}
+          placeholder="https://"
+        />
+        <Input
+          label="Xing"
+          name="xing"
+          type="url"
+          value={data.xing}
+          onChange={(v) => update('xing', v)}
+          placeholder="https://"
+        />
+        <Input
+          label="TikTok"
+          name="tiktok"
+          type="url"
+          value={data.tiktok}
+          onChange={(v) => update('tiktok', v)}
+          placeholder="https://"
+        />
+        <Input
+          label="YouTube"
+          name="youtube"
+          type="url"
+          value={data.youtube}
+          onChange={(v) => update('youtube', v)}
+          placeholder="https://"
         />
       </div>
-
-      <FieldGroupLabel>Bevorzugter Kontaktweg der Kunden</FieldGroupLabel>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-        {[
-          'Anruf',
-          'E-Mail-Formular',
-          'WhatsApp',
-          'Rückruf-Service',
-          'Direkter Termin (Cal.com)',
-        ].map((opt) => (
-          <Checkbox
-            key={opt}
-            label={opt}
-            checked={data.kontaktwege.includes(opt)}
-            onChange={() => toggleArray('kontaktwege', opt)}
-          />
-        ))}
-      </div>
-
-      <FieldGroupLabel>Existierende Marketing-Kanäle</FieldGroupLabel>
 
       <Input
-        label="Google Business Profile — URL"
+        label="Google-Unternehmensprofil (Maps)"
         name="google_business"
         type="url"
         value={data.google_business}
         onChange={(v) => update('google_business', v)}
+        placeholder="https://"
       />
+
+      <FieldGroupLabel>Kontaktformular — wohin sollen Anfragen gehen?</FieldGroupLabel>
 
       <Input
-        label="Instagram / Facebook / LinkedIn"
-        name="social_media"
-        value={data.social_media}
-        onChange={(v) => update('social_media', v)}
+        label="E-Mail-Adresse für eingehende Kontaktanfragen"
+        name="kontaktanfragen_email"
+        type="email"
+        value={data.kontaktanfragen_email}
+        onChange={(v) => update('kontaktanfragen_email', v)}
+        required
       />
 
-      <TextArea
-        label="Hauptkonkurrenten (für Differenzierung)"
-        name="konkurrenten"
-        value={data.konkurrenten}
-        onChange={(v) => update('konkurrenten', v)}
-        rows={3}
+      <RadioGroup
+        label="Sollen Anfragen zusätzlich per WhatsApp / SMS kommen?"
+        name="kontakt_whatsapp_pref"
+        value={data.kontakt_whatsapp_pref}
+        onChange={(v) => update('kontakt_whatsapp_pref', v)}
+        options={[
+          { value: 'nein', label: 'Nein, nur E-Mail' },
+          { value: 'ja', label: 'Ja, zusätzlich per WhatsApp / SMS' },
+        ]}
       />
+
+      {data.kontakt_whatsapp_pref === 'ja' && (
+        <Input
+          label="WhatsApp / SMS Nummer"
+          name="kontakt_whatsapp_nr"
+          type="tel"
+          value={data.kontakt_whatsapp_nr}
+          onChange={(v) => update('kontakt_whatsapp_nr', v)}
+        />
+      )}
     </div>
   );
 }
